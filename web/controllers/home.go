@@ -13,8 +13,8 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(blockData)
 	type KeyData struct {
-		key string 'json:"key"'
-		value string 'json:"value"'
+		Key string 'json:"key"'
+		Value string 'json:"value"'
 	}
 	var data []KeyData
 	json.Unmarshal([]byte(blockData), &data)
