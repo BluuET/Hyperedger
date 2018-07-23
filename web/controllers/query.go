@@ -9,7 +9,7 @@ func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 	QueryValue := r.FormValue("key")
 	fmt.Println(QueryValue)
 	blockData, err := app.Fabric.QueryOne(QueryValue)
-	txnID := app.Fabric.QueryOne(QueryValue)
+	
 
 	fmt.Println("#### Query One ###")
 	fmt.Printf("%v", blockData)
@@ -29,10 +29,10 @@ returnData := &struct {
 	TransactionID string
 }{
 	ResponseData:  data,
-	TransactionID: txnID,
+
 }
 
-returnData.TransactionID = txnID
+
 
 	fmt.Println("######## ResponseData")
 	fmt.Printf("%v", returnData)
