@@ -9,6 +9,7 @@ func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 	QueryValue := r.FormValue("key")
 	fmt.Println(QueryValue)
 	blockData, err := app.Fabric.QueryOne(QueryValue)
+	txnID := app.Fabric.QueryOne(QueryValue)
 
 	fmt.Println("#### Query One ###")
 	fmt.Printf("%v", blockData)
