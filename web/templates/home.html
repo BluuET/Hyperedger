@@ -15,10 +15,11 @@
     </thead>
 
     <tbody>
+        {{range $i, $blockResponse := .ResponseData}}
         <tr>
-          <td><a href="query.html?car={{$BlockResponse.Key}}">{{$BlockResponse.Key}}</a></td>
-          <td>{{$BlockResponse.Key}}</td>
-          <td>{{$BlockResponse.Value}}</td>
+          <td><a href="query.html?car={{$blockResponse.Key}}">{{$blockResponse.Key}}</a></td>
+          <td>{{$blockResponse.Key}}</td>
+          <td>{{$blockResponse.Value}}</td>
 </tr>
 {{end}}
 </tbody>
