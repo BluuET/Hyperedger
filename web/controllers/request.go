@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-type keyData struct {
+type keys struct {
 	Key string `json:"key"`
 	Value string `json:"value"`
 }
@@ -20,12 +20,12 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 		Response:      false,
 	}
 	if r.FormValue("submitted") == "true" {
-		keyData :=keys{}
+		keyData :=key{}
 		keyData.Key := r.FormValue("keysKey")
 		keyData.Value := r.FormValue("keysValue")
 
 		RequestData,_ := json.Marshal(keyData)
-		txid, err := app.Fabric.InvokeHello(keyskey,string(RequestData))
+		txid, err := app.Fabric.InvokeHello(keysKey,string(RequestData))
 
 		if err != nil {
 			http.Error(w, "Unable to invoke hello in the blockchain", 500)
