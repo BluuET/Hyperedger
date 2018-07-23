@@ -41,7 +41,7 @@ func (setup *FabricSetup) QueryOne(value string) (string, error) {
 
 	return string(response.Payload), nil
 }
-
+/*
 func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	QueryValue := r.FormValue("key")
@@ -75,3 +75,4 @@ func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	renderTemplate(w, r, "query.html", returnData)
 }
+*/
