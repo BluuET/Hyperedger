@@ -42,7 +42,7 @@ func (setup *FabricSetup) QueryOne(value string) (string, error) {
 	return string(response.Payload), nil
 }
 
-func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
+func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	QueryValue := r.FormValue("key")
 	fmt.Println(QueryValue)
