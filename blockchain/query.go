@@ -8,7 +8,7 @@ import (
 )
 
 // QueryHello query the chaincode to get the state of hello
-func (setup *FabricSetup) QueryHello() (string, error) {
+func (setup *FabricSetup) QueryAll() (string, error) {
 
 	// Prepare arguments
 	var args []string
