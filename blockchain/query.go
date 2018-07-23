@@ -1,9 +1,10 @@
 package blockchain
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"net/http"
+
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
 )
 
@@ -24,23 +25,21 @@ func (setup *FabricSetup) QueryAll() (string, error) {
 	return string(response.Payload), nil
 }
 
+// QueryOne query the chaincode to get the record of a specific Key
+func (setup *FabricSetup) QueryOne(value string) (string, error) {
 
-	// QueryOne query the chaincode to get the record of a specific Key
-	func (setup *FabricSetup) QueryOne(value string) (string, error) {
+	// Prepare arguments
+	var args []string
+	args = append(args, "invoke")
+	args = append(args, "queryone")
+	args = append(args, value)
 
-		// Prepare arguments
-		var args []string
-		args = append(args, "invoke")
-		args = append(args, "queryone")
-		args = append(args, value)
-
-		response, err := setup.client.Query(chclient.Request{ChaincodeID: setup.ChainCodeID, Fcn: args[0], Args: [][]byte{[]byte(args[1]), []byte(args[2])}})
-		if err != nil {
-			return "", fmt.Errorf("failed to query: %v", err)
-		}
-
-		return string(response.Payload), nil
+	response, err := setup.client.Query(chclient.Request{ChaincodeID: setup.ChainCodeID, Fcn: args[0], Args: [][]byte{[]byte(args[1]), []byte(args[2])}})
+	if err != nil {
+		return "", fmt.Errorf("failed to query: %v", err)
 	}
+
+	return string(response.Payload), nil
 }
 
 func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
@@ -58,7 +57,7 @@ func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	type CarData struct {
 		key   string `json:"key"`
-		value  string `json:"value"`
+		value string `json:"value"`
 	}
 
 	var data CarData
