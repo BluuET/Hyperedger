@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"net/http"
-	"json/encoding"
+	"encoding/json"
 )
 
 type keyData struct {
