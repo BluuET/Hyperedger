@@ -3,8 +3,6 @@ package blockchain
 import (
 	
 	"fmt"
-
-
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
 )
 
