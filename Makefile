@@ -25,12 +25,12 @@ env-down:
 ##### RUN
 run:
 	@echo "Start app ..."
-	@./heroes-service
+	@./Hyperedger
 
 ##### CLEAN
 clean: env-down
 	@echo "Clean up ..."
-	@rm -rf /tmp/heroes-service-* heroes-service
-	@docker rm -f -v `docker ps -a --no-trunc | grep "heroes-service" | cut -d ' ' -f 1` 2>/dev/null || true
-	@docker rmi `docker images --no-trunc | grep "heroes-service" | cut -d ' ' -f 1` 2>/dev/null || true
+	@rm -rf /tmp/Hyperedger-* Hyperedger
+	@docker rm -f -v `docker ps -a --no-trunc | grep "Hyperedger" | cut -d ' ' -f 1` 2>/dev/null || true
+	@docker rmi `docker images --no-trunc | grep "Hyperedger" | cut -d ' ' -f 1` 2>/dev/null || true
 	@echo "Clean up done"
