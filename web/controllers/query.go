@@ -16,7 +16,7 @@ if err != nil {
 	http.Error(w, "Unable to query the blockchain", 500)
 }
 
-type KeyData struct {
+type keyData struct {
 	Key string 'json:"key"'
 	Value string 'json:"value"'
 }
