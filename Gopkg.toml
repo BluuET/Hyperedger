@@ -1,4 +1,4 @@
-ignored = ["github.com/chainHero/heroes-service/chaincode"]
+ignored = ["github.com/Hyperedger/chaincode"]
 
 [[constraint]]
   # Release v1.0.0-alpha4

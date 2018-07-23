@@ -2,26 +2,27 @@ package main
 
 import (
 	"fmt"
-	"github.com/chainHero/heroes-service/blockchain"
-	"github.com/chainHero/heroes-service/web"
-	"github.com/chainHero/heroes-service/web/controllers"
 	"os"
+
+	"github.com/Hyperedger/blockchain"
+	"github.com/Hyperedger/web"
+	"github.com/Hyperedger/web/controllers"
 )
 
 func main() {
 	// Definition of the Fabric SDK properties
 	fSetup := blockchain.FabricSetup{
 		// Network parameters
-		OrdererID: "orderer.hf.chainhero.io",
+		OrdererID: "orderer.hf.Hyperedger.io",
 
 		// Channel parameters
-		ChannelID:     "chainhero",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/chainHero/heroes-service/fixtures/artifacts/chainhero.channel.tx",
+		ChannelID:     "Hyperedger",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/Hyperedger/fixtures/artifacts/Hyperedger.channel.tx",
 
 		// Chaincode parameters
 		ChainCodeID:     "heroes-service",
 		ChaincodeGoPath: os.Getenv("GOPATH"),
-		ChaincodePath:   "github.com/chainHero/heroes-service/chaincode/",
+		ChaincodePath:   "github.com/Hyperedger/chaincode/",
 		OrgAdmin:        "Admin",
 		OrgName:         "org1",
 		ConfigFile:      "config.yaml",

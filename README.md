@@ -1,6 +1,6 @@
 # Tutorial Hyperledger Fabric SDK Go: How to build your first app?
 
-Source: [chainhero.io/2018/06/tutorial-build-blockchain-app-v1-1-0](https://chainhero.io/2018/06/tutorial-build-blockchain-app-v1-1-0/)
+Source: [Hyperedger.io/2018/06/tutorial-build-blockchain-app-v1-1-0](https://Hyperedger.io/2018/06/tutorial-build-blockchain-app-v1-1-0/)
 
 This tutorial will introduce you to the Hyperledger Fabric Go SDK and allows you to build a simple application using the blockchain principle.
 
@@ -151,27 +151,27 @@ In order to make a blockchain network, we will use `docker` to build virtual com
 Make a new directory in the `src` folder of your `GOPATH`, following our repository naming:
 
 ```bash
-mkdir -p $GOPATH/src/github.com/chainHero/heroes-service && \
-cd $GOPATH/src/github.com/chainHero/heroes-service
+mkdir -p $GOPATH/src/github.com/Hyperedger/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service
 ```
 
-To get the `fixtures` folder, you can either follow this command line, which will install and use subversion to get the folder from this repository. Or download the [zip file from Github](https://github.com/chainHero/heroes-service/archive/v1.1.0.zip) and extract only the `fixtures` folder.
+To get the `fixtures` folder, you can either follow this command line, which will install and use subversion to get the folder from this repository. Or download the [zip file from Github](https://github.com/Hyperedger/archive/v1.1.0.zip) and extract only the `fixtures` folder.
 
 ```bash
 sudo apt install -y subversion && \
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
-svn checkout https://github.com/chainHero/heroes-service/branches/v1.1.0/fixtures &&
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
+svn checkout https://github.com/Hyperedger/branches/v1.1.0/fixtures &&
 rm -rf fixtures/.svn
 ```
 
-Alternatively, if you want to know how to build this fixture folder and learn how to create the blockchain network, follow this quick tutorial on [how to build your first network](https://chainhero.io/2018/04/tutorial-hyperledger-fabric-how-to-build-your-first-network/).
+Alternatively, if you want to know how to build this fixture folder and learn how to create the blockchain network, follow this quick tutorial on [how to build your first network](https://Hyperedger.io/2018/04/tutorial-hyperledger-fabric-how-to-build-your-first-network/).
 
 ### b. Test
 
 In order to check if the network works, we will use `docker-compose` to start or stop all containers at the same time. Go inside the `fixtures` folder, and run:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service/fixtures && \
+cd $GOPATH/src/github.com/Hyperedger/fixtures && \
 docker-compose up
 ```
 
@@ -185,7 +185,7 @@ docker ps
 
 ![Docker compose up screenshot](docs/images/docker-ps.png)
 
-You will see : two peers, the orderer and one CA containers. You have successfully made a new network ready to use with the SDK. To stop the network go back to the previous terminal, press `Ctrl+C` and wait that all containers are stopped. If you want to explore more deeper, follow our tutorial dedicated to the network part [here](https://chainhero.io/2018/04/tutorial-hyperledger-fabric-how-to-build-your-first-network/) or  check out the official documentation about this: [Building Your First Network](http://hyperledger-fabric.readthedocs.io/en/latest/build_network.html)
+You will see : two peers, the orderer and one CA containers. You have successfully made a new network ready to use with the SDK. To stop the network go back to the previous terminal, press `Ctrl+C` and wait that all containers are stopped. If you want to explore more deeper, follow our tutorial dedicated to the network part [here](https://Hyperedger.io/2018/04/tutorial-hyperledger-fabric-how-to-build-your-first-network/) or  check out the official documentation about this: [Building Your First Network](http://hyperledger-fabric.readthedocs.io/en/latest/build_network.html)
 
 > **Tips**: when the network is stopped, all containers used remain accessible. This is very useful to check logs for example. You can see stopped containers with `docker ps -a`. In order to clean up these containers, you need to delete them with `docker rm $(docker ps -aq)` or if you have used a `docker-compose` file, go where this file is and run `docker-compose down`.
 
@@ -199,7 +199,7 @@ You will see : two peers, the orderer and one CA containers. You have successful
 Our application needs a lot of parameters, especially the addresses of the Fabric's components to communicate. We will put everything in a new configuration file, the Fabric SDK Go configuration and our custom parameters. For the moment, we will only try to make the Fabric SDK Go works with the default chaincode:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi config.yaml
 ```
 
@@ -264,7 +264,7 @@ client:
 
   # Root of the MSP directories with keys and certs.
   cryptoconfig:
-    path: ${GOPATH}/src/github.com/chainHero/heroes-service/fixtures/crypto-config
+    path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config
 
   # Some SDKs support pluggable KV stores, the properties under "credentialStore"
   # are implementation specific
@@ -302,7 +302,7 @@ client:
 #
 channels:
   # name of the channel
-  chainhero:
+  Hyperedger:
     # Required. list of orderers designated by the application to use for transactions on this
     # channel. This list can be a result of access control ("org1" can only access "ordererA"), or
     # operational decisions to share loads from applications among the orderers.  The values must
@@ -313,7 +313,7 @@ channels:
 
     # Required. list of peers from participating orgs
     peers:
-      peer0.org1.hf.chainhero.io:
+      peer0.org1.hf.Hyperedger.io:
         # [Optional]. will this peer be sent transaction proposals for endorsement? The peer must
         # have the chaincode installed. The app can also use this property to decide which peers
         # to send the chaincode install request. Default: true
@@ -333,7 +333,7 @@ channels:
         # Default: true
         eventSource: true
 
-      peer1.org1.hf.chainhero.io:
+      peer1.org1.hf.Hyperedger.io:
 
     policies:
       #[Optional] options for retrieving channel configuration blocks
@@ -359,11 +359,11 @@ channels:
 #
 organizations:
   org1:
-    mspid: org1.hf.chainhero.io
-    cryptoPath: peerOrganizations/org1.hf.chainhero.io/users/{userName}@org1.hf.chainhero.io/msp
+    mspid: org1.hf.Hyperedger.io
+    cryptoPath: peerOrganizations/org1.hf.Hyperedger.io/users/{userName}@org1.hf.Hyperedger.io/msp
     peers:
-      - peer0.org1.hf.chainhero.io
-      - peer1.org1.hf.chainhero.io
+      - peer0.org1.hf.Hyperedger.io
+      - peer1.org1.hf.Hyperedger.io
 
     # [Optional]. Certificate Authorities issue certificates for identification purposes in a Fabric based
     # network. Typically certificates provisioning is done in a separate process outside of the
@@ -371,7 +371,7 @@ organizations:
     # dynamic certificate management (enroll, revoke, re-enroll). The following section is only for
     # Fabric-CA servers.
     certificateAuthorities:
-      - ca.org1.hf.chainhero.io
+      - ca.org1.hf.Hyperedger.io
 
 #
 # List of orderers to send transaction and channel create/update requests to. For the time
@@ -379,13 +379,13 @@ organizations:
 # SDK is implementation specific. Consult each SDK's documentation for its handling of orderers.
 #
 orderers:
-  orderer.hf.chainhero.io:
+  orderer.hf.Hyperedger.io:
     url: localhost:7050
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
     grpcOptions:
-      ssl-target-name-override: orderer.hf.chainhero.io
+      ssl-target-name-override: orderer.hf.Hyperedger.io
       # These parameters should be set in coordination with the keepalive policy on the server,
       # as incompatible settings can result in closing of connection.
       # When duration of the 'keep-alive-time' is set to 0 or less the keep alive client parameters are disabled
@@ -398,20 +398,20 @@ orderers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: ${GOPATH}/src/github.com/chainHero/heroes-service/fixtures/crypto-config/ordererOrganizations/hf.chainhero.io/tlsca/tlsca.hf.chainhero.io-cert.pem
+      path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config/ordererOrganizations/hf.Hyperedger.io/tlsca/tlsca.hf.Hyperedger.io-cert.pem
 #
 # List of peers to send various requests to, including endorsement, query
 # and event listener registration.
 #
 peers:
-  peer0.org1.hf.chainhero.io:
+  peer0.org1.hf.Hyperedger.io:
     # this URL is used to send endorsement and query requests
     url: localhost:7051
     # eventUrl is only needed when using eventhub (default is delivery service)
     eventUrl: localhost:7053
 
     grpcOptions:
-      ssl-target-name-override: peer0.org1.hf.chainhero.io
+      ssl-target-name-override: peer0.org1.hf.Hyperedger.io
       # These parameters should be set in coordination with the keepalive policy on the server,
       # as incompatible settings can result in closing of connection.
       # When duration of the 'keep-alive-time' is set to 0 or less the keep alive client parameters are disabled
@@ -424,16 +424,16 @@ peers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: ${GOPATH}/src/github.com/chainHero/heroes-service/fixtures/crypto-config/peerOrganizations/org1.hf.chainhero.io/tlsca/tlsca.org1.hf.chainhero.io-cert.pem
+      path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config/peerOrganizations/org1.hf.Hyperedger.io/tlsca/tlsca.org1.hf.Hyperedger.io-cert.pem
 
-  peer1.org1.hf.chainhero.io:
+  peer1.org1.hf.Hyperedger.io:
     # this URL is used to send endorsement and query requests
     url: localhost:8051
     # eventUrl is only needed when using eventhub (default is delivery service)
     eventUrl: localhost:8053
 
     grpcOptions:
-      ssl-target-name-override: peer1.org1.hf.chainhero.io
+      ssl-target-name-override: peer1.org1.hf.Hyperedger.io
       # These parameters should be set in coordination with the keepalive policy on the server,
       # as incompatible settings can result in closing of connection.
       # When duration of the 'keep-alive-time' is set to 0 or less the keep alive client parameters are disabled
@@ -446,7 +446,7 @@ peers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: ${GOPATH}/src/github.com/chainHero/heroes-service/fixtures/crypto-config/peerOrganizations/org1.hf.chainhero.io/tlsca/tlsca.org1.hf.chainhero.io-cert.pem
+      path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config/peerOrganizations/org1.hf.Hyperedger.io/tlsca/tlsca.org1.hf.Hyperedger.io-cert.pem
 
 #
 # Fabric-CA is a special kind of Certificate Authority provided by Hyperledger Fabric which allows
@@ -454,7 +454,7 @@ peers:
 # Certificate Authority instead of Fabric-CA, in which case this section would not be specified.
 #
 certificateAuthorities:
-  ca.org1.hf.chainhero.io:
+  ca.org1.hf.Hyperedger.io:
     url: http://localhost:7054
     # Fabric-CA supports dynamic user enrollment via REST APIs. A "root" user, a.k.a registrar, is
     # needed to enroll and invoke new users.
@@ -464,35 +464,35 @@ certificateAuthorities:
       enrollId: admin
       enrollSecret: adminpw
     # [Optional] The optional name of the CA.
-    caName: ca.org1.hf.chainhero.io
+    caName: ca.org1.hf.Hyperedger.io
     tlsCACerts:
       # Certificate location absolute path
-      path: ${GOPATH}/src/github.com/chainHero/heroes-service/fixtures/crypto-config/peerOrganizations/org1.hf.chainhero.io/ca/ca.org1.hf.chainhero.io-cert.pem
+      path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config/peerOrganizations/org1.hf.Hyperedger.io/ca/ca.org1.hf.Hyperedger.io-cert.pem
 
 entityMatchers:
   peer:
-    - pattern: (\w*)peer0.org1.hf.chainhero.io(\w*)
+    - pattern: (\w*)peer0.org1.hf.Hyperedger.io(\w*)
       urlSubstitutionExp: localhost:7051
       eventUrlSubstitutionExp: localhost:7053
-      sslTargetOverrideUrlSubstitutionExp: peer0.org1.hf.chainhero.io
-      mappedHost: peer0.org1.hf.chainhero.io
+      sslTargetOverrideUrlSubstitutionExp: peer0.org1.hf.Hyperedger.io
+      mappedHost: peer0.org1.hf.Hyperedger.io
 
-    - pattern: (\w*)peer1.org1.hf.chainhero.io(\w*)
+    - pattern: (\w*)peer1.org1.hf.Hyperedger.io(\w*)
       urlSubstitutionExp: localhost:8051
       eventUrlSubstitutionExp: localhost:8053
-      sslTargetOverrideUrlSubstitutionExp: peer1.org1.hf.chainhero.io
-      mappedHost: peer1.org1.hf.chainhero.io
+      sslTargetOverrideUrlSubstitutionExp: peer1.org1.hf.Hyperedger.io
+      mappedHost: peer1.org1.hf.Hyperedger.io
 
   orderer:
-    - pattern: (\w*)orderer.hf.chainhero.io(\w*)
+    - pattern: (\w*)orderer.hf.Hyperedger.io(\w*)
       urlSubstitutionExp: localhost:7050
-      sslTargetOverrideUrlSubstitutionExp: orderer.hf.chainhero.io
-      mappedHost: orderer.hf.chainhero.io
+      sslTargetOverrideUrlSubstitutionExp: orderer.hf.Hyperedger.io
+      mappedHost: orderer.hf.Hyperedger.io
 
   certificateAuthorities:
-    - pattern: (\w*)ca.org1.hf.chainhero.io(\w*)
+    - pattern: (\w*)ca.org1.hf.Hyperedger.io(\w*)
       urlSubstitutionExp: http://localhost:7054
-      mappedHost: ca.org1.hf.chainhero.io
+      mappedHost: ca.org1.hf.Hyperedger.io
 ```
 
 The configuration file is also available here: [`config.yaml`](config.yaml)
@@ -502,13 +502,13 @@ The configuration file is also available here: [`config.yaml`](config.yaml)
 We add a new folder named `blockchain` that will contain the whole interface that communicate with the network. We will see the Fabric SDK Go only in this folder.
 
 ```bash
-mkdir $GOPATH/src/github.com/chainHero/heroes-service/blockchain
+mkdir $GOPATH/src/github.com/Hyperedger/blockchain
 ```
 
 Now, we add a new go file named `setup.go` :
 
 ```bash
-vi $GOPATH/src/github.com/chainHero/heroes-service/blockchain/setup.go
+vi $GOPATH/src/github.com/Hyperedger/blockchain/setup.go
 ```
 
 ```go
@@ -613,7 +613,7 @@ At this stage, we only initialized a client that will communicate to a peer, a C
 To make sure that the client managed to initialize all his components, we will make a simple test with the network launched. In order to do this, we need to build the go code. Since we we haven't any main file we have to add one:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi main.go
 ```
 
@@ -622,7 +622,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/chainHero/heroes-service/blockchain"
+	"github.com/Hyperedger/blockchain"
 	"os"
 )
 
@@ -630,16 +630,16 @@ func main() {
 	// Definition of the Fabric SDK properties
 	fSetup := blockchain.FabricSetup{
 		// Network parameters 
-		OrdererID: "orderer.hf.chainhero.io",
+		OrdererID: "orderer.hf.Hyperedger.io",
 
 		// Channel parameters
-		ChannelID:     "chainhero",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/chainHero/heroes-service/fixtures/artifacts/chainhero.channel.tx",
+		ChannelID:     "Hyperedger",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/Hyperedger/fixtures/artifacts/Hyperedger.channel.tx",
 
 		// Chaincode parameters
 		ChainCodeID:     "heroes-service",
 		ChaincodeGoPath: os.Getenv("GOPATH"),
-		ChaincodePath:   "github.com/chainHero/heroes-service/chaincode/",
+		ChaincodePath:   "github.com/Hyperedger/chaincode/",
 		OrgAdmin:        "Admin",
 		OrgName:         "org1",
 		ConfigFile:      "config.yaml",
@@ -668,12 +668,12 @@ When you installed the SDK dependencies, DEP was automatically installed. If thi
 Create a file called `Gopkg.toml` and copy this inside:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi Gopkg.toml
 ```
 
 ```toml
-ignored = ["github.com/chainHero/heroes-service/chaincode"]
+ignored = ["github.com/Hyperedger/chaincode"]
 
 [[constraint]]
   # Release v1.0.0-alpha4
@@ -687,21 +687,21 @@ This is a constraint for `dep` in order to specify that in our vendor we want th
 Save the file and then execute this command to synchronize the vendor directory with our project's dependencies (this may take a while to proceed):
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 dep ensure
 ```
 
 Now we can compile our application:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 go build
 ```
 
 After some time, a new binary named `main` will appear at the root of the project. Try to start the binary like this:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 ./heroes-service
 ```
 
@@ -710,7 +710,7 @@ cd $GOPATH/src/github.com/chainHero/heroes-service && \
 At this point, it won't work because there is no network deployed that the SDK can talk with. We will first start the network and then launch the app again:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service/fixtures && \
+cd $GOPATH/src/github.com/Hyperedger/fixtures && \
 docker-compose up -d && \
 cd .. && \
 ./heroes-service
@@ -728,7 +728,7 @@ The Fabric SDK generates some files, like certificates, binaries and temporally 
 
 *How to clean up my environment ?*
 
-- Shut down your network: `cd $GOPATH/src/github.com/chainHero/heroes-service/fixtures && docker-compose down`
+- Shut down your network: `cd $GOPATH/src/github.com/Hyperedger/fixtures && docker-compose down`
 - Remove credential stores (defined in the [config](config.yaml) file, in `client.credentialStore` section): `rm -rf /tmp/heroes-service-*`
 - Remove some docker containers and docker images not generated by the `docker-compose` command:
 
@@ -759,7 +759,7 @@ sudo apt install make
 Then create a file named `Makefile` at the root of the project with this content:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi Makefile
 ```
 
@@ -823,7 +823,7 @@ To use it, go in the root of the project and use the `make` command:
 We are almost there to use the blockchain system. But for now we haven't set up any chaincode (smart contract) yet that will handle queries from our application. First, let's create a new directory named `chaincode` and add a new file named `main.go` (this is the main entry point of our smart-contract):
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 mkdir chaincode && \
 vi chaincode/main.go
 ```
@@ -994,7 +994,7 @@ func (setup *FabricSetup) InstallAndInstantiateCC() error {
 	fmt.Println("Chaincode installed")
 
 	// Set up chaincode policy
-	ccPolicy := cauthdsl.SignedByAnyMember([]string{"org1.hf.chainhero.io"})
+	ccPolicy := cauthdsl.SignedByAnyMember([]string{"org1.hf.Hyperedger.io"})
 
 	resp, err := setup.admin.InstantiateCC(setup.ChannelID, resmgmt.InstantiateCCRequest{Name: setup.ChainCodeID, Path: setup.ChaincodeGoPath, Version: "0", Args: [][]byte{[]byte("init")}, Policy: ccPolicy})
 	if err != nil || resp.TransactionID == "" {
@@ -1030,7 +1030,7 @@ The file is available here: [`blockchain/setup.go`](blockchain/setup.go)
 We need now to modify our `main.go` file in order to call our new function
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi main.go
 ```
 
@@ -1039,7 +1039,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/chainHero/heroes-service/blockchain"
+	"github.com/Hyperedger/blockchain"
 	"os"
 )
 
@@ -1047,16 +1047,16 @@ func main() {
 	// Definition of the Fabric SDK properties
 	fSetup := blockchain.FabricSetup{
 		// Network parameters
-      	OrdererID: "orderer.hf.chainhero.io",
+      	OrdererID: "orderer.hf.Hyperedger.io",
       	
 		// Channel parameters
-		ChannelID:     "chainhero",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/chainHero/heroes-service/fixtures/artifacts/chainhero.channel.tx",
+		ChannelID:     "Hyperedger",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/Hyperedger/fixtures/artifacts/Hyperedger.channel.tx",
 
 		// Chaincode parameters
 		ChainCodeID:     "heroes-service",
 		ChaincodeGoPath: os.Getenv("GOPATH"),
-		ChaincodePath:   "github.com/chainHero/heroes-service/chaincode/",
+		ChaincodePath:   "github.com/Hyperedger/chaincode/",
 		OrgAdmin:        setup.OrgAdmin,
 		OrgName:         "org1",
 		ConfigFile:      "config.yaml",
@@ -1080,7 +1080,7 @@ The file is available here: [`main.go`](main.go)
 We can test this, just with the `make` command setup in the previous step:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 make
 ```
 
@@ -1095,7 +1095,7 @@ Like a database, the chaincode is plugged and ready to answer. Let's try the `he
 We will put all query functions in a new file named `query.go` in the `blockchain` folder:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi blockchain/query.go
 ```
 
@@ -1130,7 +1130,7 @@ The file is available here: [`blockchain/query.go`](blockchain/query.go)
 You can add the call to this new function in the [`main.go`](main.go):
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi main.go
 ```
 
@@ -1152,7 +1152,7 @@ func main() {
 Let's try:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 make
 ```
 
@@ -1165,7 +1165,7 @@ The next thing to do in order to make a basic tour of the Fabric SDK Go, is to m
 First, we will add this ability in the chaincode. Edit the [`chaincode/main.go`](chaincode/main.go) file:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi chaincode/main.go
 ```
 
@@ -1247,7 +1247,7 @@ The file is available here: [`chaincode/main.go`](chaincode/main.go)
 From the application side, we add a new function to make the invocation of the chaincode. Add a file named `invoke.go` in the `blockchain` folder:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi blockchain/invoke.go
 ```
 
@@ -1306,7 +1306,7 @@ The file is available here: [`blockchain/invoke.go`](blockchain/invoke.go)
 You can then add the call to this function in the [`main.go`](main.go):
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 vi main.go
 ```
 
@@ -1324,7 +1324,7 @@ func main() {
 	}
 
 	// Invoke the chaincode
-	txId, err := fSetup.InvokeHello("chainHero")
+	txId, err := fSetup.InvokeHello("Hyperedger")
 	if err != nil {
 		fmt.Printf("Unable to invoke hello on the chaincode: %v\n", err)
 	} else {
@@ -1344,7 +1344,7 @@ func main() {
 Let's try:
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service && \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service && \
 make
 ```
 
@@ -1381,7 +1381,7 @@ And finally, we change the [`main.go`](main.go), in order to use the web interfa
 Run the app and go to [localhost:3000/home.html](http://localhost:3000/home.html):
 
 ```bash
-cd $GOPATH/src/github.com/chainHero/heroes-service ; \
+cd $GOPATH/src/github.com/Hyperedger/heroes-service ; \
 make
 ```
 
