@@ -26,7 +26,7 @@ func (setup *FabricSetup) QueryAll() (string, error) {
 }
 
 // QueryOne query the chaincode to get the record of a specific Key
-func (setup *FabricSetup) QueryOne(value string) (string, error) {
+func (app *Application) QueryOne(value string) (string, error) {
 
 	// Prepare arguments
 	var args []string
@@ -42,7 +42,7 @@ func (setup *FabricSetup) QueryOne(value string) (string, error) {
 	return string(response.Payload), nil
 }
 
-func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
+func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	QueryValue := r.FormValue("key")
 	fmt.Println(QueryValue)
