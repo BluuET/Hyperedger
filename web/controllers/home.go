@@ -20,7 +20,7 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	var data []KeyData
 	json.Unmarshal([]byte(blockData), &data)
 
-	returndData := &struct {
+	returnData := &struct {
 		ResponseData []KeyData
 	}{
 		ResponseData: data,
