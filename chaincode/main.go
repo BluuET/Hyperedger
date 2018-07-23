@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"bytes"
+	"encoding/json"
+	"time"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
@@ -9,7 +12,10 @@ import (
 // HeroesServiceChaincode implementation of Chaincode
 type HeroesServiceChaincode struct {
 }
-
+type key struct {
+	key string 'json:"key"'
+	value string 'json:"value"'
+}
 // Init of the chaincode
 // This function is called only one when the chaincode is instantiated.
 // So the goal is to prepare the ledger to handle future requests.
@@ -25,10 +31,20 @@ func (t *HeroesServiceChaincode) Init(stub shim.ChaincodeStubInterface) pb.Respo
 	}
 
 	// Put in the ledger the key/value hello/world
-	err := stub.PutState("hello", []byte("world"))
-	if err != nil {
-		return shim.Error(err.Error())
+	keys := []ky {
+		ky{key :"hello1",value :"1"},
+		ky{key :"hello2",value :"2"},
+		ky{key :"hello3",value :"3"},
 	}
+	i := 0
+	for i < len(keys) {
+		fmt.Println("i is ",i)
+		keysAsBytes, _ := json.Marshal(keys[i])
+		stub.PutState("Key"+strconv.Itoa(i),keysAsBytes)
+		fmt.Println("Added",keys[i])
+		i = i+1
+	}
+	
 
 	// Return a successful message
 	return shim.Success(nil)
@@ -62,6 +78,15 @@ func (t *HeroesServiceChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 	if args[0] == "invoke" {
 		return t.invoke(stub, args)
 	}
+	// Querying Single Record b
+	if args[0] == "queryone" {
+	return t.queryone(stub, args)
+	}
+	// Adding a new transaction to the ledger
+	if args[0] == "create" {
+		return t.createkey(stub, args)
+	}
+
 
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
@@ -79,58 +104,18 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 	// Like the Invoke function, we manage multiple type of query requests with the second argument.
 	// We also have only one possible argument: hello
-	/*if args[1] == "hello" {
-
-		// Get the state of the value matching the key hello in the ledger
-		state, err := stub.GetState("hello")
-		if err != nil {
-			return shim.Error("Failed to get state of hello")
-		}
-
-		// Return this value in response
-		return shim.Success(state)
-	}*/
 	if args[1] == "all" {
 
-		// GetState by passing lower and upper limits
+		// Get the state of the value matching the key hello in the ledger
+		
 		resultsIterator, err := stub.GetStateByRange("", "")
 		if err != nil {
 			return shim.Error(err.Error())
 		}
-		defer resultsIterator.Close()
-
-		// buffer is a JSON array containing QueryResults
-		var buffer bytes.Buffer
-		buffer.WriteString("[")
-
-		bArrayMemberAlreadyWritten := false
-		for resultsIterator.HasNext() {
-			queryResponse, err := resultsIterator.Next()
-			if err != nil {
-				return shim.Error(err.Error())
-			}
-			// Add a comma before array members, suppress it for the first array member
-			if bArrayMemberAlreadyWritten == true {
-				buffer.WriteString(",")
-			}
-			buffer.WriteString("{\"Key\":")
-			buffer.WriteString("\"")
-			buffer.WriteString(queryResponse.Key)
-			buffer.WriteString("\"")
-
-			buffer.WriteString(", \"Record\":")
-			// Record is a JSON object, so we write as-is
-			buffer.WriteString(string(queryResponse.Value))
-			buffer.WriteString("}")
-			bArrayMemberAlreadyWritten = true
-		}
-		buffer.WriteString("]")
-
-		fmt.Printf("- queryAllCars:\n%s\n", buffer.String())
-
-		return shim.Success(buffer.Bytes())
+defer resultsIterator.Close()
+		// Return this value in response
+		return shim.Success(state)
 	}
-
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown query action, check the second argument.")
 }
@@ -148,7 +133,8 @@ func (t *HeroesServiceChaincode) invoke(stub shim.ChaincodeStubInterface, args [
 	if args[1] == "key" && len(args) == 3 {
 
 		// Write the new value in the ledger
-		err := stub.PutState("key", []byte(args[2]))
+		err := stub.PutState("key"[i], []byte(args[2]))
+	
 		if err != nil {
 			return shim.Error("Failed to update state of hello")
 		}
@@ -174,3 +160,4 @@ func main() {
 		fmt.Printf("Error starting Heroes Service chaincode: %s", err)
 	}
 }
+S
