@@ -55,7 +55,7 @@ func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unable to query the blockchain", 500)
 	}
 
-	type CarData struct {
+	type keyData struct {
 		key   string `json:"key"`
 		value string `json:"value"`
 	}
