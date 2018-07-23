@@ -10,15 +10,15 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Unable to query the blockchain", 500)
 	}
-	type keyData struct {
+	type KeyData struct {
 		key string 'json:"key"'
 		value string 'json:"value"'
 	}
-	var data []keyData
+	var data []KeyData
 	json.Unmarshal([]byte(blockData), &data)
 
 	returndData := &struct {
-		ResponseData []keyData
+		ResponseData []KeyData
 	}{
 		ResponseData: data,
 	}
