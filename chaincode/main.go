@@ -2,12 +2,20 @@ package main
 
 import (
 	"fmt"
+	"bytes"
+	"strconv"
+	"time"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
 
 // HeroesServiceChaincode implementation of Chaincode
 type HeroesServiceChaincode struct {
+}
+
+type Key struct {
+	Key string 'json:"key"'
+	Value string 'json:"value"'
 }
 
 // Init of the chaincode
@@ -25,11 +33,19 @@ func (t *HeroesServiceChaincode) Init(stub shim.ChaincodeStubInterface) pb.Respo
 	}
 
 	// Put in the ledger the key/value hello/world
-	err := stub.PutState("key", []byte("world"))
-	if err != nil {
-		return shim.Error(err.Error())
-	}
 
+	keys := []key {
+		key{Key: "hellovalue1", Value:"1"},
+		key{Key: "hellovalue2", Value:"2"},
+		key{Key: "hellovalue3", Value:"3"}
+	}
+	i := 0
+	for i < len(keys)
+	fmt.Println("i is ", i)
+	keyAsBytes, _ := json.Marshal(keys[i])
+	stub.PutState("KEY"+strconv.Itoa(i),keyAsBytes)
+	fmt.Println("Added", keys[i])
+i = i + 1
 	// Return a successful message
 	return shim.Success(nil)
 }
@@ -62,6 +78,11 @@ func (t *HeroesServiceChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 	if args[0] == "invoke" {
 		return t.invoke(stub, args)
 	}
+
+	// Querying Single Record by Passing CAR ID => Key as parameter
+	if args[0] == "queryone" {
+		return t.queryone(stub, args)
+}
 
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
