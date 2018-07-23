@@ -20,7 +20,7 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 		Response:      false,
 	}
 	if r.FormValue("submitted") == "true" {
-		keyData :=key{}
+		keyData :=keys{}
 		keyData.Key := r.FormValue("keysKey")
 		keyData.Value := r.FormValue("keysValue")
 
