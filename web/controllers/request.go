@@ -4,9 +4,9 @@ import (
 	"net/http"
 )
 
-type key struct {
-	Key string 'json:"key"'
-	Value string 'json:"value"'
+type keyData struct {
+	Key string `json:"key"`
+	Value string `json:"value"`
 }
 
 func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
@@ -21,8 +21,8 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.FormValue("submitted") == "true" {
 		keyData :=key{}
-		keyData := r.FormValue("keyKey")
-		keyData := r.FormValue("keyValue")
+		keyData := r.FormValue("Key")
+		keyData := r.FormValue("Value")
 
 		RequestData,_ := json.Marshal(keyData)
 		txid, err := app.Fabric.InvokeHello(keykey,string(RequestData))
