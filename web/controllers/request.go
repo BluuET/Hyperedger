@@ -21,8 +21,8 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.FormValue("submitted") == "true" {
 		keyData :=key{}
-		keyData.Key := r.FormValue("KeyDataKey")
-		keyData.Value := r.FormValue("KeyDataValue")
+		keyData.Key := r.FormValue("keyDataKey")
+		keyData.Value := r.FormValue("keyDataValue")
 
 		RequestData,_ := json.Marshal(keyData)
 		txid, err := app.Fabric.InvokeHello(keykey,string(RequestData))
