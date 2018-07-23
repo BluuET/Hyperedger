@@ -20,12 +20,12 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 		Response:      false,
 	}
 	if r.FormValue("submitted") == "true" {
-		keyData :=key{}
-		keyData.Key := r.FormValue("keyDataKey")
-		keyData.Value := r.FormValue("keyDataValue")
+		keyData :=keys{}
+		keyData.Key := r.FormValue("keysKey")
+		keyData.Value := r.FormValue("keysValue")
 
 		RequestData,_ := json.Marshal(keyData)
-		txid, err := app.Fabric.InvokeHello(keyDatakey,string(RequestData))
+		txid, err := app.Fabric.InvokeHello(keyskey,string(RequestData))
 
 		if err != nil {
 			http.Error(w, "Unable to invoke hello in the blockchain", 500)
