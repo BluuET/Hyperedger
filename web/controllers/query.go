@@ -6,11 +6,12 @@ import (
 	"net/http"
 )
 func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
-	QueryValue := r.FormValue("key")fmt.Println(QueryValue)
+	QueryValue := r.FormValue("key")
+	fmt.Println(QueryValue)
 	blockData, txnID, err := app.Fabric.QueryOne(QueryValue)
 
 	fmt.Println("#### Query One ###")
-fmt.Printf("%v", blockData)
+	fmt.Printf("%v", blockData)
 if err != nil {
 	http.Error(w, "Unable to query the blockchain", 500)
 }
