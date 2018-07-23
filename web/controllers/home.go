@@ -15,8 +15,8 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 		value string 'json:"value"'
 	}
 	var data []keyData
-	json.Unmarshal([]byte(blockData),&data
-)
+	json.Unmarshal([]byte(blockData), &data)
+
 	returndData := &struct {
 		ResponseData []keyData
 	}{
