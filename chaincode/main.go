@@ -45,7 +45,7 @@ func (t *HeroesServiceChaincode) Init(stub shim.ChaincodeStubInterface) pb.Respo
 	keyAsBytes, _ := json.Marshal(keys[i])
 	stub.PutState("KEY"+strconv.Itoa(i),keyAsBytes)
 	fmt.Println("Added", keys[i])
-i = i + 1
+	i = i + 1
 	// Return a successful message
 	return shim.Success(nil)
 }
@@ -100,7 +100,7 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 	// Like the Invoke function, we manage multiple type of query requests with the second argument.
 	// We also have only one possible argument: hello
-	/*if args[1] == "hello" {
+	if args[1] == "key" {
 
 		// Get the state of the value matching the key hello in the ledger
 		state, err := stub.GetState("hello")
@@ -110,7 +110,7 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 		// Return this value in response
 		return shim.Success(state)
-	}*/
+	}
 	if args[1] == "all" {
 
 		// GetState by passing lower and upper limits
