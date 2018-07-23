@@ -8,7 +8,6 @@ type keyData struct {
 	Key string `json:"key"`
 	Value string `json:"value"`
 }
-
 func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 	data := &struct {
 		TransactionId string
@@ -21,8 +20,8 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.FormValue("submitted") == "true" {
 		keyData :=key{}
-		keyData := r.FormValue("Key")
-		keyData := r.FormValue("Value")
+		keyData := r.FormValue("KeyDataKey")
+		keyData := r.FormValue("KeyDataValue")
 
 		RequestData,_ := json.Marshal(keyData)
 		txid, err := app.Fabric.InvokeHello(keykey,string(RequestData))
