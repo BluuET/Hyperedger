@@ -25,7 +25,7 @@ env-down:
 ##### RUN
 run:
 	@echo "Start app ..."
-	@./heros-service
+	@./Hyperedger
 
 ##### CLEAN
 clean: env-down
