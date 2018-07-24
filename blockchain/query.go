@@ -1,10 +1,8 @@
 package blockchain
 
 import (
-	"encoding/json"
+	
 	"fmt"
-	"net/http"
-
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/channel"
 )
 
@@ -34,15 +32,15 @@ func (setup *FabricSetup) QueryOne(value string) (string, error) {
 	args = append(args, "queryone")
 	args = append(args, value)
 
-	response, err := setup.client.Query(chclient.Request{ChaincodeID: setup.ChainCodeID, Fcn: args[0], Args: [][]byte{[]byte(args[1]), []byte(args[2])}})
+	response, err := setup.client.Query(channel.Request{ChaincodeID: setup.ChainCodeID, Fcn: args[0], Args: [][]byte{[]byte(args[1]), []byte(args[2])}})
 	if err != nil {
 		return "", fmt.Errorf("failed to query: %v", err)
 	}
 
 	return string(response.Payload), nil
 }
-
-func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
+/*
+func (app *Application) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	QueryValue := r.FormValue("key")
 	fmt.Println(QueryValue)
@@ -55,12 +53,12 @@ func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unable to query the blockchain", 500)
 	}
 
-	type CarData struct {
+	type keyData struct {
 		key   string `json:"key"`
 		value string `json:"value"`
 	}
 
-	var data CarData
+	var data keyData
 	json.Unmarshal([]byte(blockData), &data)
 
 	returnData := &struct {
@@ -75,3 +73,4 @@ func (setup *FabricSetup) QueryHandler(w http.ResponseWriter, r *http.Request) {
 
 	renderTemplate(w, r, "query.html", returnData)
 }
+*/

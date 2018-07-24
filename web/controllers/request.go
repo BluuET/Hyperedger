@@ -2,13 +2,13 @@ package controllers
 
 import (
 	"net/http"
+	"encoding/json"
 )
 
-type key struct {
-	Key string 'json:"key"'
-	Value string 'json:"value"'
+type keys struct {
+	Key string `json:"key"`
+	Value string `json:"value"`
 }
-
 func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 	data := &struct {
 		TransactionId string
@@ -20,12 +20,12 @@ func (app *Application) RequestHandler(w http.ResponseWriter, r *http.Request) {
 		Response:      false,
 	}
 	if r.FormValue("submitted") == "true" {
-		keyData :=key{}
-		keyData := r.FormValue("keyKey")
-		keyData := r.FormValue("keyValue")
+		keyData :=keys{}
+		keyData.Key = r.FormValue("keysKey")
+		keyData.Value = r.FormValue("keysValue")
 
-		RequestData,_ := json.Marshal(keyData)
-		txid, err := app.Fabric.InvokeHello(keykey,string(RequestData))
+		RequestData, _ := json.Marshal(keyData)
+		txid, err := app.Fabric.InvokeHello(string(RequestData))
 
 		if err != nil {
 			http.Error(w, "Unable to invoke hello in the blockchain", 500)
