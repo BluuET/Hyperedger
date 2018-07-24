@@ -240,7 +240,7 @@ peers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: C:\Users\ASUS\Documents\GitHub\Hyperedger\fixtures\crypto-config\peerOrganizations\org1.hf.chainhero.io\tlsca\tlsca.org1.hf.chainhero.io-cert.pem
+      path: GitHub\Hyperedger\fixtures\crypto-config\peerOrganizations\org1.hf.chainhero.io\tlsca\tlsca.org1.hf.chainhero.io-cert.pem
 
 #
 # Fabric-CA is a special kind of Certificate Authority provided by Hyperledger Fabric which allows
@@ -261,7 +261,7 @@ certificateAuthorities:
     caName: ca.org1.hf.chainhero.io
     tlsCACerts:
       # Certificate location absolute path
-      path: C:\Users\ASUS\Documents\GitHub\Hyperedger\fixtures\crypto-config\ordererOrganizations\hf.chainhero.io\ca\ca.hf.chainhero.io-cert.pem
+      path: GitHub\Hyperedger\fixtures\crypto-config\ordererOrganizations\hf.chainhero.io\ca\ca.hf.chainhero.io-cert.pem
 
 entityMatchers:
   peer:
