@@ -13,7 +13,7 @@ func main() {
 	// Definition of the Fabric SDK properties
 	fSetup := blockchain.FabricSetup{
 		// Network parameters
-		OrdererID: "orderer.hf.Hyperedger.io",
+		OrdererID: "orderer.hf.chainhero.io",
 
 		// Channel parameters
 		ChannelID:     "Hyperedger",
