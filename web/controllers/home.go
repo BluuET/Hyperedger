@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"net/http"
 	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -14,7 +14,7 @@ func (app *Application) HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	fmt.Println(blockData)
 	type KeyData struct {
-		Key string `json:"key"`
+		Key   string `json:"key"`
 		Value string `json:"value"`
 	}
 	var data []KeyData
