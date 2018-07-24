@@ -16,8 +16,8 @@ func main() {
 		OrdererID: "orderer.hf.chainhero.io",
 
 		// Channel parameters
-		ChannelID:     "Hyperedger",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/Hyperedger/fixtures/artifacts/Hyperedger.channel.tx",
+		ChannelID:     "chainhero",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/Hyperedger/fixtures/artifacts/chainhero.channel.tx",
 
 		// Chaincode parameters
 		ChainCodeID:     "heroes-service",
