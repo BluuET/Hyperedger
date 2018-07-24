@@ -261,7 +261,7 @@ certificateAuthorities:
     caName: ca.org1.hf.Hyperedger.io
     tlsCACerts:
       # Certificate location absolute path
-      path: ${GOPATH}/src/github.com/Hyperedger/fixtures/crypto-config/peerOrganizations/org1.hf.Hyperedger.io/ca/ca.org1.hf.Hyperedger.io-cert.pem
+      path: C:\Users\ASUS\Documents\GitHub\Hyperedger\fixtures\crypto-config\ordererOrganizations\hf.chainhero.io\ca\ca.hf.Hyperedger.io-cert.pem
 
 entityMatchers:
   peer:
