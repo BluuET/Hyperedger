@@ -189,7 +189,7 @@ func (t *HeroesServiceChaincode) invoke(stub shim.ChaincodeStubInterface, args [
 	}
 
 	// If the arguments given don�t match any function, we return an error
-	return shim.Error("Unknown invoke action, check the second argument.")
+	return shim.Error("Unknown invoke action, check the second argument t2.")
 }
 
 func main() {
