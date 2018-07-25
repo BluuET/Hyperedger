@@ -101,17 +101,17 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 	// Like the Invoke function, we manage multiple type of query requests with the second argument.
 	// We also have only one possible argument: hello
-	if args[1] == "key" {
+	/*if args[1] == "all" {
 
 		// Get the state of the value matching the key hello in the ledger
-		state, err := stub.GetState("hello")
+		state, err := stub.GetStateByRange("","")
 		if err != nil {
 			return shim.Error("Failed to get state of hello")
 		}
 
 		// Return this value in response
 		return shim.Success(state)
-	}
+	}*/
 	if args[1] == "all" {
 
 		// GetState by passing lower and upper limits
