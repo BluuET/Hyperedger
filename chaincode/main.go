@@ -14,8 +14,8 @@ type HeroesServiceChaincode struct {
 }
 
 type Key struct {
-	Key string 'json:"key"'
-	Value string 'json:"value"'
+	Key string `json:"key"`
+	Value string `json:"value"`
 }
 
 // Init of the chaincode
@@ -84,7 +84,7 @@ func (t *HeroesServiceChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.queryone(stub, args)
 }
 
-	// If the arguments given don’t match any function, we return an error
+	// If the arguments given donï¿½t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
 }
 
@@ -152,7 +152,7 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 		return shim.Success(buffer.Bytes())
 	}
 
-	// If the arguments given don’t match any function, we return an error
+	// If the arguments given donï¿½t match any function, we return an error
 	return shim.Error("Unknown query action, check the second argument.")
 }
 
@@ -184,7 +184,7 @@ func (t *HeroesServiceChaincode) invoke(stub shim.ChaincodeStubInterface, args [
 		return shim.Success(nil)
 	}
 
-	// If the arguments given don’t match any function, we return an error
+	// If the arguments given donï¿½t match any function, we return an error
 	return shim.Error("Unknown invoke action, check the second argument.")
 }
 
