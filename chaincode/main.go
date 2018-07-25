@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"bytes"
 	"strconv"
+	"encoding/json"
 	"time"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	pb "github.com/hyperledger/fabric/protos/peer"
@@ -147,7 +148,7 @@ func (t *HeroesServiceChaincode) query(stub shim.ChaincodeStubInterface, args []
 		}
 		buffer.WriteString("]")
 
-		fmt.Printf("- queryAllCars:\n%s\n", buffer.String())
+		fmt.Printf("- queryAllKeys:\n%s\n", buffer.String())
 
 		return shim.Success(buffer.Bytes())
 	}
